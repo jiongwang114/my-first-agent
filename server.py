@@ -3,7 +3,7 @@ import asyncio
 from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from sse_starlette.sse import EventSourceResponse
-
+import os
 # 导入我们已经写好的强大 Agent 大脑
 from core.agent import Agent
 
