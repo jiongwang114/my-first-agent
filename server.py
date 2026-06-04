@@ -68,9 +68,11 @@ async def chat_endpoint(request: Request):
     # 使用 sse_starlette 将生成器包装成标准的 SSE HTTP 响应
     return EventSourceResponse(event_generator())
 
-# --- 本地测试区块 ---
-if __name__ == "__main__":
-    import uvicorn
-    print("🚀 正在启动 FastAPI 服务器...")
-    # 启动服务器，监听 8000 端口
-    uvicorn.run("server:app", host="0.0.0.0", port=8000, reload=True)
+# 挂载静态文件目录 (允许网页加载 js、css 和图片)
+if os.path.exists("frontend"):
+    app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+# 将根路由 "/" 强行指向你的 index.html 网页
+@app.get("/")
+async def serve_frontend():
+    return FileResponse("frontend/index.html")
