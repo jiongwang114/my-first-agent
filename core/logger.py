@@ -29,8 +29,8 @@ def setup_logger():
         handlers=[
             # 将日志写入文件
             logging.FileHandler(log_file, encoding="utf-8"),
-            # 如果你希望终端不仅有 print，也有标准的日志格式，可以取消下面这行的注释
-            # logging.StreamHandler() 
+            # 同时输出到控制台（Docker logs 可见）
+            logging.StreamHandler()
         ]
     )
     
