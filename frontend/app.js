@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // 3. 向我们刚才写的 FastAPI 后端发起 POST 请求
-            const response = await fetch('http://localhost:8000/chat', {
+            const response = await fetch('/chat', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query: text, session_id: sessionId })
